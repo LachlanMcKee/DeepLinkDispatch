@@ -49,6 +49,7 @@ public class DeepLinkProcessorTest {
 
     assertAbout(javaSources())
         .that(Arrays.asList(module, sampleActivity))
+        .withCompilerOptions("-AdeepLink.customAnnotations=com.example.MyDeepLink")
         .processedWith(new DeepLinkProcessor())
         .compilesWithoutError()
         .and()
@@ -120,6 +121,9 @@ public class DeepLinkProcessorTest {
     assertAbout(javaSources())
         .that(Arrays.asList(customAnnotationAppLink, customAnnotationWebLink,
             module, sampleActivity))
+        .withCompilerOptions("-AdeepLink.customAnnotations="
+            + "com.example.MyDeepLink,"
+            + "com.example.WebDeepLink,com.example.AppDeepLink")
         .processedWith(new DeepLinkProcessor())
         .compilesWithoutError()
         .and()
@@ -186,6 +190,7 @@ public class DeepLinkProcessorTest {
 
     assertAbout(javaSources())
         .that(Arrays.asList(module, activityWithUppercasePackage))
+        .withCompilerOptions("-AdeepLink.customAnnotations=com.example.MyDeepLink")
         .processedWith(new DeepLinkProcessor())
         .compilesWithoutError()
         .and()
@@ -233,6 +238,7 @@ public class DeepLinkProcessorTest {
 
     assertAbout(javaSource())
         .that(sampleActivity)
+        .withCompilerOptions("-AdeepLink.customAnnotations=com.example.MyDeepLink")
         .processedWith(new DeepLinkProcessor())
         .failsToCompile()
         .withErrorContaining("Only static methods can be annotated");
@@ -249,6 +255,7 @@ public class DeepLinkProcessorTest {
 
     assertAbout(javaSources())
         .that(Arrays.asList(emptyPrefixLink, SIMPLE_DEEPLINK_ACTIVITY, SIMPLE_DEEPLINK_MODULE))
+        .withCompilerOptions("-AdeepLink.customAnnotations=com.example.MyDeepLink")
         .processedWith(new DeepLinkProcessor())
         .failsToCompile()
         .withErrorContaining("Prefix property cannot have null or empty strings");
@@ -266,6 +273,7 @@ public class DeepLinkProcessorTest {
     assertAbout(javaSources())
         .that(Arrays.asList(emptyPrefixArrayLink, SIMPLE_DEEPLINK_ACTIVITY,
             SIMPLE_DEEPLINK_MODULE))
+        .withCompilerOptions("-AdeepLink.customAnnotations=com.example.MyDeepLink")
         .processedWith(new DeepLinkProcessor())
         .failsToCompile()
         .withErrorContaining("Prefix property cannot be empty");
@@ -313,6 +321,7 @@ public class DeepLinkProcessorTest {
 
     assertAbout(javaSources())
         .that(Arrays.asList(module, sampleActivity))
+        .withCompilerOptions("-AdeepLink.customAnnotations=com.example.MyDeepLink")
         .processedWith(new DeepLinkProcessor())
         .compilesWithoutError()
         .and()
@@ -378,6 +387,7 @@ public class DeepLinkProcessorTest {
 
     assertAbout(javaSource())
         .that(sampleActivity)
+        .withCompilerOptions("-AdeepLink.customAnnotations=com.example.MyDeepLink")
         .processedWith(new DeepLinkProcessor())
         .failsToCompile()
         .withErrorContaining(
