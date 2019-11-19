@@ -18,6 +18,7 @@ sourceSets {
 dependencies {
   implementation project(':deeplinkdispatch-base')
   implementation deps.jsr305
+  implementation deps.kotlinStdLib
   implementation deps.javaPoet
   implementation deps.autoCommon
 
