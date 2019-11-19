@@ -18,6 +18,7 @@ package com.airbnb.deeplinkdispatch;
 import com.google.auto.common.AnnotationMirrors;
 import com.google.auto.common.MoreElements;
 import com.google.auto.common.MoreTypes;
+import com.google.auto.service.AutoService;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.FluentIterable;
@@ -31,6 +32,8 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeSpec;
+
+import net.ltgt.gradle.incap.IncrementalAnnotationProcessor;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -48,6 +51,7 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedOptions;
 import javax.lang.model.SourceVersion;
@@ -66,7 +70,10 @@ import static com.airbnb.deeplinkdispatch.MoreAnnotationMirrors.asAnnotationValu
 import static com.airbnb.deeplinkdispatch.MoreAnnotationMirrors.getTypeValue;
 import static com.airbnb.deeplinkdispatch.Utils.decapitalize;
 import static com.google.auto.common.MoreElements.getAnnotationMirror;
+import static net.ltgt.gradle.incap.IncrementalAnnotationProcessorType.AGGREGATING;
 
+@IncrementalAnnotationProcessor(AGGREGATING)
+@AutoService(Processor.class)
 @SupportedOptions(Documentor.DOC_OUTPUT_PROPERTY_NAME)
 public class DeepLinkProcessor extends AbstractProcessor {
   private static final ClassName CLASS_BASE_DEEP_LINK_DELEGATE
