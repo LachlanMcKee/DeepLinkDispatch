@@ -5,6 +5,10 @@ sourceCompatibility = 1.7
 
 apply plugin: 'checkstyle'
 
+apply plugin: 'maven'
+
+group = 'com.github.LachlanMcKee'
+
 sourceSets {
   test {
     java {
