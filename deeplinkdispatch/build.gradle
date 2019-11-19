@@ -4,9 +4,10 @@ sourceCompatibility = 1.7
 
 apply plugin: 'checkstyle'
 
-apply from: '../gradle-maven-push.gradle'
+apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'kotlin-android'
 
+group='com.github.LachlanMcKee'
 
 dependencies {
   api project(':deeplinkdispatch-base')
